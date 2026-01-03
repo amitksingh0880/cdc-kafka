@@ -1,0 +1,22 @@
+{
+  "name": "source-connector-policies",
+  "config": {
+    "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+    "database.hostname": "sqlserver",
+    "database.port": "1433",
+    "database.user": "sa",
+    "database.password": "YourStrong@Password123",
+    "database.names": "PolicyServiceDB",
+    "database.encrypt": "false",
+    "topic.prefix": "insurance",
+    "table.include.list": "dbo.Policies,dbo.Coverage,dbo.Premiums",
+    "database.history.kafka.bootstrap.servers": "kafka:29092",
+    "database.history.kafka.topic": "schema-changes.policies",
+    "schema.history.internal.kafka.bootstrap.servers": "kafka:29092",
+    "schema.history.internal.kafka.topic": "schema-changes.policies.internal",
+    "include.schema.changes": "true",
+    "snapshot.mode": "initial",
+    "poll.interval.ms": "1000",
+    "tasks.max": "1"
+  }
+}

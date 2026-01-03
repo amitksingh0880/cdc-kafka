@@ -1,0 +1,22 @@
+{
+    "name": "source-connector-customers",
+    "config": {
+        "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+        "database.hostname": "sqlserver",
+        "database.port": "1433",
+        "database.user": "sa",
+        "database.password": "YourStrong@Password123",
+        "database.names": "CustomerServiceDB",
+        "database.encrypt": "false",
+        "topic.prefix": "insurance",
+        "table.include.list": "dbo.Customers,dbo.Addresses,dbo.Beneficiaries",
+        "database.history.kafka.bootstrap.servers": "kafka:29092",
+        "database.history.kafka.topic": "schema-changes.customers",
+        "schema.history.internal.kafka.bootstrap.servers": "kafka:29092",
+        "schema.history.internal.kafka.topic": "schema-changes.customers.internal",
+        "include.schema.changes": "true",
+        "snapshot.mode": "initial",
+        "poll.interval.ms": "1000",
+        "tasks.max": "1"
+    }
+}

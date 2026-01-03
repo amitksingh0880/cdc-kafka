@@ -1,0 +1,22 @@
+{
+    "name": "source-connector-claims",
+    "config": {
+        "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+        "database.hostname": "sqlserver",
+        "database.port": "1433",
+        "database.user": "sa",
+        "database.password": "YourStrong@Password123",
+        "database.names": "ClaimsServiceDB",
+        "database.encrypt": "false",
+        "topic.prefix": "insurance",
+        "table.include.list": "dbo.Claims,dbo.ClaimDocuments,dbo.ClaimPayments",
+        "database.history.kafka.bootstrap.servers": "kafka:29092",
+        "database.history.kafka.topic": "schema-changes.claims",
+        "schema.history.internal.kafka.bootstrap.servers": "kafka:29092",
+        "schema.history.internal.kafka.topic": "schema-changes.claims.internal",
+        "include.schema.changes": "true",
+        "snapshot.mode": "initial",
+        "poll.interval.ms": "1000",
+        "tasks.max": "1"
+    }
+}
