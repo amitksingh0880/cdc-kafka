@@ -8,7 +8,8 @@ Write-Host "=============================================================" -Fore
 try {
     docker info | Out-Null
     Write-Host "[OK] Docker is running" -ForegroundColor Green
-} catch {
+}
+catch {
     Write-Host "[ERROR] Docker is not running. Please start Docker Desktop first." -ForegroundColor Red
     exit 1
 }
@@ -34,7 +35,8 @@ while (-not $sqlReady -and $retryCount -lt $maxRetries) {
             $sqlReady = $true
             Write-Host "[OK] SQL Server is ready!" -ForegroundColor Green
         }
-    } catch {
+    }
+    catch {
         # Keep waiting
     }
 }
@@ -62,10 +64,11 @@ while (-not $connectReady -and $retryCount -lt $maxRetries) {
     Write-Host "  Checking Kafka Connect (attempt $retryCount/$maxRetries)..."
     
     try {
-        $response = Invoke-RestMethod -Uri "http://localhost:8083/" -Method Get -ErrorAction Stop
+        Invoke-RestMethod -Uri "http://localhost:8083/" -Method Get -ErrorAction Stop | Out-Null
         $connectReady = $true
         Write-Host "[OK] Kafka Connect is ready!" -ForegroundColor Green
-    } catch {
+    }
+    catch {
         # Keep waiting
     }
 }
